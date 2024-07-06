@@ -21,17 +21,17 @@ def registro_pedido():
 
 def detalle_pedido():
     print("\nDetalle del pedido solicitado.")
-    for i, cliente in enumerate(informacion_cliente, start=0):
+    for i, cliente in enumerate(informacion_cliente, start=1):
         print(f"{i}. {cliente['Nombre del cliente']} {cliente['Apellido del cliente']} {cliente['Contacto']} {cliente['Evento']} ({cliente['Menu']})")
 
-def crear_archivo_json(nombre_archivo, datos):
+def crear_json(nombre_archivo, datos):
     with open(nombre_archivo, 'w') as archivo:
         json.dump(datos, archivo, indent=4)
     print(f"archivo JSON: {nombre_archivo} creado exitosamente")
 
-def crear_archivo_texto(nombre_archivo, contenido):
+def crear_texto(nombre_archivo, contenido):
     with open(nombre_archivo, 'w') as archivo:
-        archivo.write(contenido)
+        archivo.write(f"Registro para {contenido}:\n")
     print(f"archivo: {nombre_archivo} creado exitosamente")
 
 
@@ -50,8 +50,8 @@ def menu():
         elif opcion == "2":
             detalle_pedido()
         elif opcion == "3":
-            crear_archivo_json('Registro.json', informacion_cliente)
-            crear_archivo_texto('Registro', informacion_cliente)
+            crear_json('Registro.json', informacion_cliente)
+            crear_texto('Registro', detalle_pedido)
         elif opcion == "4":
             print("¡Hasta luego!")
             break
