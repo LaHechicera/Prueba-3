@@ -31,7 +31,7 @@ def crear_json(nombre_archivo, datos):
 
 def crear_texto(nombre_archivo, contenido):
     with open(nombre_archivo, 'w') as archivo:
-        archivo.write(f"Registro para {contenido}:\n")
+        archivo.write(f"{i}. {contenido['Nombre del cliente']} {contenido['Apellido del cliente']} {contenido['Contacto']} {contenido['Evento']} ({contenido['Menu']})")
     print(f"archivo: {nombre_archivo} creado exitosamente")
 
 
