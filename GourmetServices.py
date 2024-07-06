@@ -31,7 +31,7 @@ def crear_json(nombre_archivo, datos):
 
 def crear_texto(nombre_archivo, contenido):
     with open(nombre_archivo, 'w') as archivo:
-        archivo.write(f"{i}. {contenido['Nombre del cliente']} {contenido['Apellido del cliente']} {contenido['Contacto']} {contenido['Evento']} ({contenido['Menu']})")
+        archivo.write(f"{contenido['Nombre del cliente']} {contenido['Apellido del cliente']} {contenido['Contacto']} {contenido['Evento']} {contenido['Menu']}")
     print(f"archivo: {nombre_archivo} creado exitosamente")
 
 
@@ -40,7 +40,7 @@ def menu():
         print("\n--- Menú ---")
         print("1. Registrar pedido")
         print("2. Imprimir detalle del pedido")
-        print("3. ----Imprimir detalle")
+        print("3. Imprimir detalle")
         print("4. Salir del programa")
 
         opcion = input("Selecciona una opción: ")
@@ -51,7 +51,7 @@ def menu():
             detalle_pedido()
         elif opcion == "3":
             crear_json('Registro.json', informacion_cliente)
-            crear_texto('Registro', detalle_pedido)
+            crear_texto('Registro', registro_pedido)
         elif opcion == "4":
             print("¡Hasta luego!")
             break
