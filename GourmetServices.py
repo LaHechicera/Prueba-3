@@ -1,11 +1,13 @@
+import json
 
 informacion_cliente = []
+
 def registro_pedido():
     nombre = input("Ingrese su nombre: ")
     apellido = input("Ingresa su apellido: ")
     contacto = input("Ingresa su contacto telefónico: ")
     evento = input("Ingrese tipo de evento: ")
-    Menu_comida = input("Ingrese el número de menú de comida deseado:\n1) Comida Italiana\n2) Comida Japonesa\n3) BBQ\nSeleccione la opción: ")
+    Menu_comida = input("Ingrese el número de menú de comida deseado:\nComida Italiana\nComida Japonesa\nBBQ\nEscriba la opción: ")
 
     cliente = {
         "Nombre del cliente": nombre,
@@ -17,10 +19,21 @@ def registro_pedido():
     informacion_cliente.append(cliente)
     print("\n*Su pedido ha sido registrado*")
 
-def detalle_pedido(cliente):
+def detalle_pedido():
     print("\nDetalle del pedido solicitado.")
-    for i, cliente in enumerate(informacion_cliente, start=1):
-        print(f"{i}. {cliente['nombre']} {cliente['apellido']} {cliente['Contacto']} {cliente['Menu']} {cliente['Menu']}")
+    for i, cliente in enumerate(informacion_cliente, start=0):
+        print(f"{i}. {cliente['Nombre del cliente']} {cliente['Apellido del cliente']} {cliente['Contacto']} {cliente['Evento']} ({cliente['Menu']})")
+
+def crear_archivo_json(nombre_archivo, datos):
+    with open(nombre_archivo, 'w') as archivo:
+        json.dump(datos, archivo, indent=4)
+    print(f"archivo JSON: {nombre_archivo} creado exitosamente")
+
+def crear_archivo_texto(nombre_archivo, contenido):
+    with open(nombre_archivo, 'w') as archivo:
+        archivo.write(contenido)
+    print(f"archivo: {nombre_archivo} creado exitosamente")
+
 
 def menu():
     while True:
@@ -36,6 +49,9 @@ def menu():
             registro_pedido()
         elif opcion == "2":
             detalle_pedido()
+        elif opcion == "3":
+            crear_archivo_json('Registro.json', informacion_cliente)
+            crear_archivo_texto('Registro', informacion_cliente)
         elif opcion == "4":
             print("¡Hasta luego!")
             break
